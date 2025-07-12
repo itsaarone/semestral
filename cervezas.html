@@ -21,7 +21,7 @@
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: url('https://i.pinimg.com/1200x/f7/b7/57/f7b7570f7af7f269db8d7f3c5b0588f0.jpg') center/cover no-repeat fixed;
+      background: url('https://i.pinimg.com/1200x/13/31/e3/1331e39c75c257a9215b10ea4ba46e18.jpg') center/cover no-repeat fixed;
       backdrop-filter: blur(3px);
       color: var(--text-light);
       min-height: 100vh;
@@ -31,12 +31,11 @@
 
     header {
       text-align: center;
-      padding: 1rem 1rem 0.5rem;
+      padding: 1rem;
     }
 
     header img {
-      height: 140px;
-      max-width: 100%;
+      height: 120px;
     }
 
     nav {
@@ -64,13 +63,13 @@
     h1 {
       text-align: center;
       color: var(--accent);
-      margin: 1rem auto 1.5rem;
+      margin: 1.5rem auto;
       text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
     }
 
     .menu-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
       padding: 0 1rem;
       margin-bottom: 2rem;
@@ -82,42 +81,31 @@
       overflow: hidden;
       box-shadow: 0 4px 10px rgba(0,0,0,0.5);
       transition: transform 0.3s;
-      display: flex;
-      align-items: center;
-      min-height: 150px;
     }
 
     .menu-item:hover {
       transform: scale(1.03);
     }
 
-    .menu-info {
-      display: flex;
-      align-items: center;
-      padding: 1rem;
-      gap: 1rem;
+    .menu-item img {
       width: 100%;
+      height: 180px;
+      object-fit: cover;
     }
 
-    .menu-info img {
-      width: 60px;
-      height: auto;
-      flex-shrink: 0;
-    }
-
-    .menu-info div {
-      flex-grow: 1;
+    .menu-info {
+      padding: 1rem;
     }
 
     .menu-info h3 {
       color: var(--accent);
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.5rem;
     }
 
     .menu-info p {
       font-size: 0.9rem;
       color: #ddd;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.5rem;
     }
 
     .price {
@@ -134,23 +122,20 @@
       margin-top: auto;
     }
 
-    @media (max-width: 600px) {
-      .menu-grid {
-        grid-template-columns: 1fr;
-        padding: 0;
+    /* Mejoras responsive */
+    @media (max-width: 768px) {
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
       }
 
       header img {
-        height: 80px;
+        height: 100px;
       }
 
       h1 {
         font-size: 1.8rem;
-      }
-
-      nav {
-        flex-direction: column;
-        align-items: center;
       }
     }
   </style>
