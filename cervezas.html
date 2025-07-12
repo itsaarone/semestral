@@ -21,7 +21,7 @@
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: url('https://i.pinimg.com/736x/0b/bc/78/0bbc786db3ab1e1048f78cc9c71b855b.jpg') center/cover no-repeat fixed;
+      background: url('https://i.pinimg.com/1200x/f7/b7/57/f7b7570f7af7f269db8d7f3c5b0588f0.jpg') center/cover no-repeat fixed;
       backdrop-filter: blur(3px);
       color: var(--text-light);
       min-height: 100vh;
@@ -31,11 +31,12 @@
 
     header {
       text-align: center;
-      padding: 1rem;
+      padding: 1rem 1rem 0.5rem;
     }
 
     header img {
-      height: 120px;
+      height: 140px;
+      max-width: 100%;
     }
 
     nav {
@@ -63,13 +64,13 @@
     h1 {
       text-align: center;
       color: var(--accent);
-      margin: 1.5rem auto;
+      margin: 1rem auto 1.5rem;
       text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
     }
 
     .menu-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1.5rem;
       padding: 0 1rem;
       margin-bottom: 2rem;
@@ -81,31 +82,42 @@
       overflow: hidden;
       box-shadow: 0 4px 10px rgba(0,0,0,0.5);
       transition: transform 0.3s;
+      display: flex;
+      align-items: center;
+      min-height: 150px;
     }
 
     .menu-item:hover {
       transform: scale(1.03);
     }
 
-    .menu-item img {
+    .menu-info {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      gap: 1rem;
       width: 100%;
-      height: 180px;
-      object-fit: cover;
     }
 
-    .menu-info {
-      padding: 1rem;
+    .menu-info img {
+      width: 60px;
+      height: auto;
+      flex-shrink: 0;
+    }
+
+    .menu-info div {
+      flex-grow: 1;
     }
 
     .menu-info h3 {
       color: var(--accent);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.3rem;
     }
 
     .menu-info p {
       font-size: 0.9rem;
       color: #ddd;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.3rem;
     }
 
     .price {
@@ -122,20 +134,23 @@
       margin-top: auto;
     }
 
-    /* Mejoras responsive */
-    @media (max-width: 768px) {
-      nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.5rem;
+    @media (max-width: 600px) {
+      .menu-grid {
+        grid-template-columns: 1fr;
+        padding: 0;
       }
 
       header img {
-        height: 100px;
+        height: 80px;
       }
 
       h1 {
         font-size: 1.8rem;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: center;
       }
     }
   </style>
@@ -159,91 +174,143 @@
 
   <h1>Cervezas</h1>
 
-  <div class="menu-grid">
-    <div class="menu-item">
-      <div class="menu-info">
+<div class="menu-grid">
+
+  <div class="menu-item">
+    <div class="menu-info" style="display: flex; align-items: center; gap: 1rem;">
+      <img src="https://heinekenpanama.com/wp-content/uploads/2020/02/botella.png" alt="Panamá Lager" style="width: 28px; height: auto;" />
+      <div>
         <h3>Panamá Lager</h3>
         <p>Cerveza nacional rubia, refrescante y suave.</p>
         <p class="price">$2.00</p>
       </div>
     </div>
-    <div class="menu-item">
-      <div class="menu-info">
+  </div>
+
+  <div class="menu-item">
+    <div class="menu-info" style="display: flex; align-items: center; gap: 1rem;">
+      <img src="https://www.cerveceria-nacional.com/sites/g/files/seuoyk1591/files/2023-10/Balboa%20330mL.png" alt="Balboa Clásica" style="width: 90px; height: auto;" />
+      <div>
         <h3>Balboa Clásica</h3>
         <p>Cerveza oscura panameña de sabor fuerte.</p>
         <p class="price">$2.25</p>
       </div>
     </div>
-    <div class="menu-item">
-  <div class="menu-info">
-    <h3>Atlas</h3>
-    <p>Cerveza clara y ligera, muy popular en Panamá.</p>
-    <p class="price">$2.25</p>
   </div>
-</div>
-<div class="menu-item">
-  <div class="menu-info">
-    <h3>Soberana</h3>
-    <p>Cerveza artesanal panameña, suave y refrescante.</p>
-    <p class="price">$2.75</p>
+
+  <div class="menu-item">
+    <div class="menu-info" style="display: flex; align-items: center; gap: 1rem;">
+      <img src="https://www.cerveceria-nacional.com/sites/g/files/seuoyk1591/files/2024-01/ATLAS%20botella%20590.png" alt="Atlas" style="width: 90px; height: auto;" />
+      <div>
+        <h3>Atlas</h3>
+        <p>Cerveza clara y ligera, muy popular en Panamá.</p>
+        <p class="price">$2.25</p>
+      </div>
+    </div>
   </div>
-</div>
-    <div class="menu-item">
-      <div class="menu-info">
+
+  <div class="menu-item">
+    <div class="menu-info" style="display: flex; align-items: center; gap: 1rem;">
+      <img src="https://png.pngtree.com/png-vector/20250106/ourmid/pngtree-corona-extra-beer-bottle-with-lime-wedge-on-top-isolated-a-png-image_15067617.png" alt="Corona Extra" style="width: 90px; height: auto;" />
+      <div>
         <h3>Corona Extra</h3>
-        <p>Cerveza mexicana ligera y reconocida mundialmente.</p>
-        <p class="price">$3.50</p>
-      </div>
-    </div>
-    <div class="menu-item">
-      <div class="menu-info">
-        <h3>Heineken</h3>
-        <p>Importada de Holanda, suave con notas herbales.</p>
-        <p class="price">$3.75</p>
-      </div>
-    </div>
-    <div class="menu-item">
-      <div class="menu-info">
-        <h3>Stella Artois</h3>
-        <p>Cerveza belga premium de sabor balanceado.</p>
-        <p class="price">$4.00</p>
-      </div>
-    </div>
-    <div class="menu-item">
-      <div class="menu-info">
-        <h3>Punk IPA</h3>
-        <p>Cerveza artesanal inglesa con sabor frutal y amargo.</p>
-        <p class="price">$5.00</p>
-      </div>
-    </div>
-    <div class="menu-item">
-      <div class="menu-info">
-        <h3>Paulaner Weissbier</h3>
-        <p>Cerveza de trigo alemana, suave y especiada.</p>
-        <p class="price">$4.75</p>
-      </div>
-    </div>
-    <div class="menu-item">
-      <div class="menu-info">
-        <h3>Modelo Especial</h3>
-        <p>Cerveza mexicana dorada, con sabor ligero y limpio.</p>
-        <p class="price">$3.25</p>
-      </div>
-    </div>
-    <div class="menu-item">
-      <div class="menu-info">
-        <h3>Budweiser</h3>
-        <p>Clásica americana con cuerpo ligero y refrescante.</p>
+        <p>Cerveza mexicana clara, ideal con limón y sal.</p>
         <p class="price">$3.00</p>
       </div>
     </div>
-    <div class="menu-item">
-      <div class="menu-info">
-        <h3>Blue Moon</h3>
-        <p>Estilo belga con notas de cáscara de naranja y cilantro.</p>
-        <p class="price">$4.25</p>
+  </div>
+
+  <div class="menu-item">
+    <div class="menu-info" style="display: flex; align-items: center; gap: 1rem;">
+      <img src="https://png.pngtree.com/png-vector/20230922/ourmid/pngtree-heineken-liquid-green-white-png-image_10091104.png" alt="Heineken" style="width: 50px; height: auto;" />
+      <div>
+        <h3>Heineken</h3>
+        <p>Cerveza premium holandesa con sabor distintivo.</p>
+        <p class="price">$3.25</p>
       </div>
     </div>
+  </div>
+
+  <div class="menu-item">
+    <div class="menu-info" style="display: flex; align-items: center; gap: 1rem;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Botella-de-budweiser-cerveza-colombiana.png" alt="Budweiser" style="width: 25px; height: auto;" />
+      <div>
+        <h3>Budweiser</h3>
+        <p>Cerveza americana con cuerpo medio y refrescante.</p>
+        <p class="price">$2.75</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <div class="menu-info" style="display: flex; align-items: center; gap: 1rem;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/StellaGlobalBottle-NoReflection-master-cerveza-bavaria.png" alt="Stella Artois" style="width: 35px; height: auto;" />
+      <div>
+        <h3>Stella Artois</h3>
+        <p>Cerveza belga suave con un final amargo elegante.</p>
+        <p class="price">$3.50</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <div class="menu-info" style="display: flex; align-items: center; gap: 1rem;">
+      <img src="https://www.pngkey.com/png/full/239-2398144_modelo-especial.png" alt="Modelo Especial" style="width: 30px; height: auto;" />
+      <div>
+        <h3>Modelo Especial</h3>
+        <p>Cerveza mexicana de sabor suave y refrescante.</p>
+        <p class="price">$3.25</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <div class="menu-info" style="display: flex; align-items: center; gap: 1rem;">
+      <img src="https://heinekenmexico.com/storage/app/uploads/public/654/af4/091/654af4091fb16933017234.png" alt="Bohemia" style="width: 50px; height: auto;" />
+      <div>
+        <h3>Bohemia</h3>
+        <p>Cerveza fuerte y compleja, ideal para paladares exigentes.</p>
+        <p class="price">$3.50</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <div class="menu-info" style="display: flex; align-items: center; gap: 1rem;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Bottle_of_Duff_2.png" alt="Duff" style="width: 47px; height: auto;" />
+      <div>
+        <h3>Duff</h3>
+        <p>La cerveza favorita de los fans de Los Simpson.</p>
+        <p class="price">$3.00</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <div class="menu-info" style="display: flex; align-items: center; gap: 1rem;">
+      <img src="https://149474836.v2.pressablecdn.com/wp-content/uploads/2020/08/bev-bottle-amstel-light-1.png" alt="Amstel Light" style="width: 33px; height: auto;" />
+      <div>
+        <h3>Amstel Light</h3>
+        <p>Cerveza baja en calorías con sabor suave.</p>
+        <p class="price">$2.75</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <div class="menu-info" style="display: flex; align-items: center; gap: 1rem;">
+      <img src="https://choppbrahmaexpress.vtexassets.com/arquivos/ids/155796/brahma_-_600ml.png?v=637353454952430000" alt="Brahma" style="width: 38px; height: auto;" />
+      <div>
+        <h3>Brahma</h3>
+        <p>Cerveza brasileña suave y refrescante.</p>
+        <p class="price">$2.25</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
   </div>
 
   <footer>
