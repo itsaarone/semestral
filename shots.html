@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Menú - Entradas | Vititos</title>
+  <title>Menú - Cervezas | Vititos</title>
   <style>
     :root {
       --bg-dark: #111;
@@ -21,7 +21,7 @@
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: url('https://i.pinimg.com/736x/db/e0/8c/dbe08cd6a7c1c8fb9b8c5750819106c2.jpg') center/cover no-repeat fixed;
+      background: url('https://i.pinimg.com/1200x/13/31/e3/1331e39c75c257a9215b10ea4ba46e18.jpg') center/cover no-repeat fixed;
       backdrop-filter: blur(3px);
       color: var(--text-light);
       min-height: 100vh;
@@ -31,15 +31,14 @@
 
     header {
       text-align: center;
-      padding: 1rem 1rem 0.5rem;
+      padding: 1rem;
     }
 
     header img {
-      height: 140px;
-      max-width: 100%;
+      height: 120px;
     }
 
-     nav {
+    nav {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
@@ -64,7 +63,7 @@
     h1 {
       text-align: center;
       color: var(--accent);
-      margin: 1rem auto 1.5rem;
+      margin: 1.5rem auto;
       text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
     }
 
@@ -123,23 +122,20 @@
       margin-top: auto;
     }
 
-    @media (max-width: 600px) {
-      .menu-grid {
-        grid-template-columns: 1fr;
-        padding: 0;
+    /* Mejoras responsive */
+    @media (max-width: 768px) {
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
       }
 
       header img {
-        height: 80px;
+        height: 100px;
       }
 
       h1 {
         font-size: 1.8rem;
-      }
-
-      nav {
-        flex-direction: column;
-        align-items: center;
       }
     }
   </style>
@@ -160,7 +156,6 @@
     <a href="bebidas.html">Bebidas</a>
     <a href="reservas.html">Reservas</a>
   </nav>
-
   <h1>Shots</h1>
 
 <div class="menu-grid">
