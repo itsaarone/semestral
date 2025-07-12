@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Menú - Cervezas | Vititos</title>
+  <title>Menú - Entradas | Vititos</title>
   <style>
     :root {
       --bg-dark: #111;
@@ -31,14 +31,15 @@
 
     header {
       text-align: center;
-      padding: 1rem;
+      padding: 1rem 1rem 0.5rem;
     }
 
     header img {
-      height: 120px;
+      height: 140px;
+      max-width: 100%;
     }
 
-    nav {
+     nav {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
@@ -63,7 +64,7 @@
     h1 {
       text-align: center;
       color: var(--accent);
-      margin: 1.5rem auto;
+      margin: 1rem auto 1.5rem;
       text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
     }
 
@@ -122,20 +123,23 @@
       margin-top: auto;
     }
 
-    /* Mejoras responsive */
-    @media (max-width: 768px) {
-      nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.5rem;
+    @media (max-width: 600px) {
+      .menu-grid {
+        grid-template-columns: 1fr;
+        padding: 0;
       }
 
       header img {
-        height: 100px;
+        height: 80px;
       }
 
       h1 {
         font-size: 1.8rem;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: center;
       }
     }
   </style>
@@ -157,95 +161,145 @@
     <a href="reservas.html">Reservas</a>
   </nav>
 
-
   <h1>Shots</h1>
 
-  <div class="menu-grid">
-    <div class="menu-item">
-      <div class="menu-info">
+<div class="menu-grid">
+
+  <div class="menu-item">
+    <div class="menu-info" style="display: flex; align-items: center; gap: 1rem;">
+      <img src=" https://img.pikbest.com/origin/10/02/63/44upIkbEsTHjd.png!sw800" alt="Tequila Fire" style="width: 130px; height: auto;">
+      <div>
         <h3>Tequila Fire</h3>
         <p>Shot de tequila blanco con sal y limón.</p>
         <p class="price">$3.50</p>
+        <p>Promoción 2x1</p>
       </div>
     </div>
-    <div class="menu-item">
-      <div class="menu-info">
+  </div>
+
+  <div class="menu-item">
+    <div class="menu-info" style="display: flex; align-items: center; gap: 1rem;">
+      <img src="https://boozy.ph/cdn/shop/products/JagerbombPack.png?v=1714120367" alt="Jägerbomb" style="width: 130px; height: auto;">
+      <div>
         <h3>Jägerbomb</h3>
         <p>Jägermeister con Red Bull. Explosivo y energizante.</p>
         <p class="price">$4.00</p>
       </div>
     </div>
-    <div class="menu-item">
-      <div class="menu-info">
+  </div>
+
+  <div class="menu-item">
+    <div class="menu-info" style="display: flex; align-items: center; gap: 1rem;">
+      <img src="https://www.pngplay.com/wp-content/uploads/13/Martini-Lemon-Drop-Transparent-Image.png" alt="Lemon Drop" style="width: 90px; height: auto;">
+      <div>
         <h3>Lemon Drop</h3>
         <p>Vodka cítrico con azúcar en el borde.</p>
         <p class="price">$3.50</p>
       </div>
     </div>
-    <div class="menu-item">
-      <div class="menu-info">
-        <h3>cherry Bomb</h3>
+  </div>
+
+  <div class="menu-item">
+    <div class="menu-info" style="display: flex; align-items: center; gap: 1rem;">
+      <img src="https://imgproxy.domestika.org/unsafe/w:820/plain/src://content-items/014/439/332/prancha%20pt1-original.png?1697466139" alt="Cherry Bomb" style="width: 95px; height: auto;">
+      <div>
+        <h3>Cherry Bomb</h3>
         <p>Ron de cereza y bebida energética.</p>
         <p class="price">$3.75</p>
       </div>
     </div>
-    <div class="menu-item">
-      <div class="menu-info">
+  </div>
+
+  <div class="menu-item">
+    <div class="menu-info" style="display: flex; align-items: center; gap: 1rem;">
+      <img src="https://png.pngtree.com/png-clipart/20250127/original/pngtree-shot-of-b52-in-measuring-glass-against-black-photo-png-image_20051636.png" alt="B-52" style="width: 115px; height: auto;">
+      <div>
         <h3>B-52</h3>
         <p>Licor de café, Baileys y Grand Marnier en capas.</p>
         <p class="price">$4.50</p>
+        <p>Promoción 2x1</p>
       </div>
     </div>
-    <div class="menu-item">
-      <div class="menu-info">
+  </div>
+
+  <div class="menu-item">
+    <div class="menu-info" style="display: flex; align-items: center; gap: 1rem;">
+      <img src="https://abmcocktails.com/wp-content2/uploads/sites/2/2017/11/kiwikamikaze.png" alt="Kamikaze" style="width: 95px; height: auto;">
+      <div>
         <h3>Kamikaze</h3>
         <p>Vodka, triple sec y lima en un trago potente.</p>
         <p class="price">$3.75</p>
       </div>
     </div>
-    <div class="menu-item">
-      <div class="menu-info">
+  </div>
+
+  <div class="menu-item">
+    <div class="menu-info" style="display: flex; align-items: center; gap: 1rem;">
+      <img src="https://imgproxy.attic.sh/insecure/f:webp/q:90/w:256/plain/https://attic.sh/hhbcydi9zb8iddam8hpe5fljmees" alt="Baby Guinness" style="width: 95px; height: auto;">
+      <div>
         <h3>Baby Guinness</h3>
         <p>Licor de café con una capa de crema irlandesa.</p>
         <p class="price">$4.00</p>
       </div>
     </div>
-    <div class="menu-item">
-      <div class="menu-info">
+  </div>
+
+  <div class="menu-item">
+    <div class="menu-info" style="display: flex; align-items: center; gap: 1rem;">
+      <img src="https://chispotequila.com/wp-content/uploads/2024/10/watermelonshot.png" alt="Mexican Candy" style="width: 115px; height: auto;">
+      <div>
         <h3>Mexican Candy</h3>
         <p>Tequila con licor de sandía y un toque picante.</p>
         <p class="price">$3.80</p>
       </div>
     </div>
-    <div class="menu-item">
-  <div class="menu-info">
-    <h3>Ojos Rojos</h3>
-    <p>Tequila con salsa picante y jugo de tomate.</p>
-    <p class="price">$3.50</p>
   </div>
-</div>
 
-<div class="menu-item">
-  <div class="menu-info">
-    <h3>Dragón Azul</h3>
-    <p>Curazao azul, vodka y limón en un shot vibrante.</p>
-    <p class="price">$4.00</p>
+  <div class="menu-item">
+    <div class="menu-info" style="display: flex; align-items: center; gap: 1rem;">
+      <img src="https://png.pngtree.com/png-clipart/20240813/original/pngtree-red-drink-in-glass-with-cucumber-and-mint-stylishly-designed-png-image_15762993.png" alt="Ojos Rojos" style="width: 110px; height: auto;">
+      <div>
+        <h3>Ojos Rojos</h3>
+        <p>Tequila con salsa picante y jugo de tomate.</p>
+        <p class="price">$3.50</p>
+      </div>
+    </div>
   </div>
-</div>
-    <div class="menu-item">
-      <div class="menu-info">
+
+  <div class="menu-item">
+    <div class="menu-info" style="display: flex; align-items: center; gap: 1rem;">
+      <img src="https://png.pngtree.com/png-clipart/20231116/original/pngtree-cocktail-blue-lagoon-liqueur-photo-png-image_13574185.png" alt="Dragón Azul" style="width: 105px; height: auto;">
+      <div>
+        <h3>Dragón Azul</h3>
+        <p>Curazao azul, vodka y limón en un shot vibrante.</p>
+        <p class="price">$4.00</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <div class="menu-info" style="display: flex; align-items: center; gap: 1rem;">
+      <img src="https://www.fireballwhisky.com/content/dam/sazerac/final/north-america/shooters/fireball/archived-do-not-use/bottle/Fireball_Whisky_Bottle_Transparent_Background.png" alt="Fireball Shot" style="width: 130px; height: auto;">
+      <div>
         <h3>Fireball Shot</h3>
         <p>Whisky con canela, dulce y fuerte.</p>
         <p class="price">$3.75</p>
       </div>
     </div>
-    <div class="menu-item">
-      <div class="menu-info">
-        <h3>raimbow shot</h3>
-        <p> Shot multicolor de sabores tropicales.</p>
+  </div>
+
+  <div class="menu-item">
+    <div class="menu-info" style="display: flex; align-items: center; gap: 1rem;">
+      <img src="https://www.zirkova.com/wp-content/uploads/2023/04/drink-rainbowShots.webp" alt="Rainbow Shot" style="width: 95px; height: auto;">
+      <div>
+        <h3>Rainbow Shot</h3>
+        <p>Shot multicolor de sabores tropicales.</p>
         <p class="price">$4.25</p>
       </div>
     </div>
+  </div>
+
+
   </div>
 
   <footer>
