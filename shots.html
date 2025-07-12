@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menú - Shots | Vititos</title>
+  <style>
+    :root {
+      --bg-dark: #111;
+      --overlay: rgba(0,0,0,0.6);
+      --accent: #e69c0f;
+      --text-light: #fafafa;
+      --footer-bg: #000;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://i.pinimg.com/736x/db/e0/8c/dbe08cd6a7c1c8fb9b8c5750819106c2.jpg') center/cover no-repeat;
+      background-attachment: fixed;
+      backdrop-filter: blur(2px);
+      color: var(--text-light);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      text-align: center;
+      padding: 1rem 1rem 0.5rem;
+    }
+
+    header img {
+      height: 100px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    nav a {
+      background: var(--accent);
+      color: #111;
+      padding: 0.6rem 1rem;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    nav a:hover {
+      background: #ffbb33;
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--accent);
+      margin: 1rem auto 1.5rem;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      padding: 0 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .menu-item {
+      background: var(--overlay);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      transition: transform 0.3s;
+    }
+
+    .menu-item:hover {
+      transform: scale(1.03);
+    }
+
+    .menu-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .menu-info {
+      padding: 1rem;
+    }
+
+    .menu-info h3 {
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .menu-info p {
+      font-size: 0.9rem;
+      color: #ddd;
+      margin-bottom: 0.5rem;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #f4c542;
+    }
+
+    footer {
+      background: var(--footer-bg);
+      color: #888;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.85rem;
+      margin-top: auto;
+    }
+
+    @media (max-width: 600px) {
+      .menu-grid {
+        grid-template-columns: 1fr;
+        padding: 0;
+      }
+
+      header img {
+        height: 80px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+ <a href="main.html">
+       <img src="C:\Users\Emilio\Videos\semestral\vititos.png" alt="Logo Vititos" style="height: 350px; position: relative; z-index: 1;" />
+    </a>
+  </header>
+
+  <nav>
+    <a href="entradas.html">Entradas</a>
+    <a href="cervezas.html">Cervezas</a>
+    <a href="cocteles.html">Cócteles</a>
+    <a href="shots.html">Shots</a>
+    <a href="bebidas.html">Bebidas</a>
+    <a href="reservas.html">Reservas</a>
+  </nav>
+
+  <h1>Shots</h1>
+
+  <div class="menu-grid">
+    <div class="menu-item">
+      <div class="menu-info">
+        <h3>Tequila Fire</h3>
+        <p>Shot de tequila blanco con sal y limón.</p>
+        <p class="price">$3.50</p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-info">
+        <h3>Jägerbomb</h3>
+        <p>Jägermeister con Red Bull. Explosivo y energizante.</p>
+        <p class="price">$4.00</p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-info">
+        <h3>Lemon Drop</h3>
+        <p>Vodka cítrico con azúcar en el borde.</p>
+        <p class="price">$3.50</p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-info">
+        <h3>cherry Bomb</h3>
+        <p>Ron de cereza y bebida energética.</p>
+        <p class="price">$3.75</p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-info">
+        <h3>B-52</h3>
+        <p>Licor de café, Baileys y Grand Marnier en capas.</p>
+        <p class="price">$4.50</p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-info">
+        <h3>Kamikaze</h3>
+        <p>Vodka, triple sec y lima en un trago potente.</p>
+        <p class="price">$3.75</p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-info">
+        <h3>Baby Guinness</h3>
+        <p>Licor de café con una capa de crema irlandesa.</p>
+        <p class="price">$4.00</p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-info">
+        <h3>Mexican Candy</h3>
+        <p>Tequila con licor de sandía y un toque picante.</p>
+        <p class="price">$3.80</p>
+      </div>
+    </div>
+    <div class="menu-item">
+  <div class="menu-info">
+    <h3>Ojos Rojos</h3>
+    <p>Tequila con salsa picante y jugo de tomate.</p>
+    <p class="price">$3.50</p>
+  </div>
+</div>
+
+<div class="menu-item">
+  <div class="menu-info">
+    <h3>Dragón Azul</h3>
+    <p>Curazao azul, vodka y limón en un shot vibrante.</p>
+    <p class="price">$4.00</p>
+  </div>
+</div>
+    <div class="menu-item">
+      <div class="menu-info">
+        <h3>Fireball Shot</h3>
+        <p>Whisky con canela, dulce y fuerte.</p>
+        <p class="price">$3.75</p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-info">
+        <h3>raimbow shot</h3>
+        <p> Shot multicolor de sabores tropicales.</p>
+        <p class="price">$4.25</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    2025 Emilio Polastre. Ingeniería en Informática. Contacto: epolastre1@gmail.com. Todos los derechos reservados.
+  </footer>
+</body>
+</html>

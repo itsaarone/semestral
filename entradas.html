@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menú - Entradas | Vititos</title>
+  <style>
+    :root {
+      --bg-dark: #111;
+      --overlay: rgba(0,0,0,0.6);
+      --accent: #e69c0f;
+      --text-light: #fafafa;
+      --footer-bg: #000;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://i.pinimg.com/1200x/f7/b7/57/f7b7570f7af7f269db8d7f3c5b0588f0.jpg') center/cover no-repeat;
+      background-attachment: fixed;
+      backdrop-filter: blur(3px);
+      color: var(--text-light);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      text-align: center;
+      padding: 1rem 1rem 0.5rem;
+    }
+
+    header img {
+      height: 100px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    nav a {
+      background: var(--accent);
+      color: #111;
+      padding: 0.6rem 1rem;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    nav a:hover {
+      background: #ffbb33;
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--accent);
+      margin: 1rem auto 1.5rem;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      padding: 0 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .menu-item {
+      background: var(--overlay);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      transition: transform 0.3s;
+    }
+
+    .menu-item:hover {
+      transform: scale(1.03);
+    }
+
+    .menu-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .menu-info {
+      padding: 1rem;
+    }
+
+    .menu-info h3 {
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .menu-info p {
+      font-size: 0.9rem;
+      color: #ddd;
+      margin-bottom: 0.5rem;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #f4c542;
+    }
+
+    footer {
+      background: var(--footer-bg);
+      color: #888;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.85rem;
+      margin-top: auto;
+    }
+
+    @media (max-width: 600px) {
+      .menu-grid {
+        grid-template-columns: 1fr;
+        padding: 0;
+      }
+
+      header img {
+        height: 80px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+ <a href="main.html">
+       <img src="C:\Users\Emilio\Videos\semestral\vititos.png" alt="Logo Vititos" style="height: 350px; position: relative; z-index: 1;" />
+    </a>
+  </header>
+
+  <nav>
+    <a href="entradas.html">Entradas</a>
+    <a href="cervezas.html">Cervezas</a>
+    <a href="cocteles.html">Cócteles</a>
+    <a href="shots.html">Shots</a>
+    <a href="bebidas.html">Bebidas</a>
+    <a href="reservas.html">Reservas</a>
+  </nav>
+
+  <h1>Entradas</h1>
+  <div class="menu-grid">
+    <div class="menu-item">
+      <div class="menu-info">
+        <h3>Nachos con Queso</h3>
+        <p>Totopos con queso fundido y jalapeños frescos.</p>
+        <p class="price">$5.00</p>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-info">
+        <h3>Alitas BBQ</h3>
+        <p>Jugosas alitas bañadas en salsa barbacoa.</p>
+        <p class="price">$7.50</p>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-info">
+        <h3>Papas Fritas</h3>
+        <p>Papas crujientes con sal y especias.</p>
+        <p class="price">$3.50</p>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-info">
+        <h3>Empanadas</h3>
+        <p>Rellenas de carne, pollo o queso, fritas al instante.</p>
+        <p class="price">$4.00</p>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-info">
+        <h3>Yuca Frita</h3>
+        <p>Con alioli de ajo o salsa picante.</p>
+        <p class="price">$3.75</p>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-info">
+        <h3>Tostones</h3>
+        <p>Plátano verde frito con aderezo de la casa.</p>
+        <p class="price">$3.25</p>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-info">
+        <h3>Chorizo Parrillero</h3>
+        <p>Chorizo artesanal a la parrilla con chimichurri.</p>
+        <p class="price">$4.50</p>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-info">
+        <h3>Camarones al Ajillo</h3>
+        <p>Salteados con mantequilla, ajo y perejil.</p>
+        <p class="price">$8.00</p>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-info">
+        <h3>Quesadillas</h3>
+        <p>Tortillas rellenas de queso derretido y pollo.</p>
+        <p class="price">$6.00</p>
+      </div>
+    </div>
+    <div class="menu-item">
+  <div class="menu-info">
+    <h3>Brochetas de Pollo BBQ</h3>
+    <p>Trozos de pollo marinados en salsa BBQ y asados al grill.</p>
+    <p class="price">$5.50</p>
+  </div>
+</div>
+<div class="menu-item">
+  <div class="menu-info">
+    <h3>Ceviche de Camarón</h3>
+    <p>Camarón marinado en limón con cebolla, culantro y maíz.</p>
+    <p class="price">$6.00</p>
+  </div>
+</div>
+    <div class="menu-item">
+      <div class="menu-info">
+        <h3>Arepitas con Queso</h3>
+        <p>Mini arepas fritas con queso blanco rallado.</p>
+        <p class="price">$3.80</p>
+      </div>
+    </div>
+  </div>
+  <footer>
+    2025 Emilio Polastre. Ingeniería en Informática. Contacto: epolastre1@gmail.com. Todos los derechos reservados.
+  </footer>
+</body>
+</html>
