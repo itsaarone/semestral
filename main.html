@@ -1,99 +1,54 @@
-<!DOCTYPE html>
-<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Vititos – Bar Restaurante</title>
   <style>
     :root {
-      --bg-dark: #111;
-      --overlay: rgba(0,0,0,0.6);
-      --accent: #e69c0f;
-      --text-light: #fafafa;
-      --footer-bg: #000;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      --overlay: rgba(0, 0, 0, 0.6);
+      --accent: #f0c040;
+      --footer-bg: #111;
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #000;
+      color: #fff;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
-      background: var(--bg-dark);
-      color: var(--text-light);
     }
 
     header {
-      position: relative;
-      height: 80vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    header::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('https://i.pinimg.com/1200x/13/31/e3/1331e39c75c257a9215b10ea4ba46e18.jpg') center/cover no-repeat;
-      filter: blur(3px) brightness(0.6);
-      z-index: 0;
-      transform: scale(1.05);
-    }
-
-    header h1 {
-      position: relative;
-      font-size: 3rem;
-      color: var(--accent);
-      z-index: 1;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
-    }
-
-    .hero {
-      padding: 2rem 1rem;
       text-align: center;
+      padding: 1rem 0;
     }
 
-    .hero h2 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      color: white;
+    .logo {
+      height: 400px;
+      width: auto;
+      max-width: 100%;
+      position: relative;
+      z-index: 1;
     }
 
     .gallery {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
       gap: 1rem;
+      flex-wrap: wrap;
+      padding: 2rem;
     }
 
     .gallery img {
-      width: calc(50% - 1rem);
       max-width: 300px;
-      border-radius: 8px;
-      transition: transform 0.3s;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    }
-
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
-
-    .location, .slogan {
-      text-align: center;
-      margin: 1rem;
-      padding: 1rem;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
     }
 
     .location {
       font-size: 1.1rem;
       color: #ccc;
+      text-align: center;
+      margin-bottom: 1rem;
     }
 
     .slogan {
@@ -102,6 +57,10 @@
       font-style: italic;
       font-size: 1.1rem;
       border-radius: 4px;
+      margin: 0 auto 2rem;
+      max-width: 90%;
+      padding: 1rem;
+      text-align: center;
     }
 
     .button-container {
@@ -142,13 +101,17 @@
       header h1 {
         font-size: 2rem;
       }
+
+      .logo {
+        height: 300px; /* Aumentado para móviles */
+      }
     }
   </style>
 </head>
 <body>
 
   <header>
-<img src="https://github.com/itsaarone/semestral/blob/a58545b972449b694854a9b32f20a843c1ad65cd/vititos.png" alt="Logo Vititos" style="height: 400px; position: relative; z-index: 1;" />
+    <img src="vititos.png" alt="Logo Vititos" class="logo" />
   </header>
 
   <section class="hero">
@@ -158,12 +121,12 @@
     </div>
   </section>
 
-
-
   <div class="button-container">
     <a href="entradas.html">Ingresa al menú</a>
   </div>
+
   <div class="location">📍 Panamá, Calle 50, Edif. 87</div>
+
   <div class="slogan">
     el lugar ideal para disfrutar los mejores platillos y bebidas en un ambiente único con promociones exclusivas.
   </div>
@@ -173,4 +136,4 @@
   </footer>
 
 </body>
-</html>
+
