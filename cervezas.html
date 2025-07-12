@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Menú - Cervezas | Vititos</title>
   <style>
     :root {
@@ -21,8 +21,7 @@
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: url('https://i.pinimg.com/736x/0b/bc/78/0bbc786db3ab1e1048f78cc9c71b855b.jpg') center/cover no-repeat;
-      background-attachment: fixed;
+      background: url('https://i.pinimg.com/736x/0b/bc/78/0bbc786db3ab1e1048f78cc9c71b855b.jpg') center/cover no-repeat fixed;
       backdrop-filter: blur(3px);
       color: var(--text-light);
       min-height: 100vh;
@@ -32,11 +31,11 @@
 
     header {
       text-align: center;
-      padding: 1rem 1rem 0.5rem;
+      padding: 1rem;
     }
 
     header img {
-      height: 100px;
+      height: 120px;
     }
 
     nav {
@@ -64,7 +63,7 @@
     h1 {
       text-align: center;
       color: var(--accent);
-      margin: 1rem auto 1.5rem;
+      margin: 1.5rem auto;
       text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
     }
 
@@ -123,23 +122,20 @@
       margin-top: auto;
     }
 
-    @media (max-width: 600px) {
-      .menu-grid {
-        grid-template-columns: 1fr;
-        padding: 0;
+    /* Mejoras responsive */
+    @media (max-width: 768px) {
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
       }
 
       header img {
-        height: 80px;
+        height: 100px;
       }
 
       h1 {
         font-size: 1.8rem;
-      }
-
-      nav {
-        flex-direction: column;
-        align-items: center;
       }
     }
   </style>
@@ -147,10 +143,9 @@
 <body>
 
   <header>
- <a href="main.html">
-       <img src="https://github.com/itsaarone/semestral/blob/a58545b972449b694854a9b32f20a843c1ad65cd/vititos.png" alt="Logo Vititos" style="height: 350px; position: relative; z-index: 1;" />
+    <a href="main.html">
+      <img src="vititos.png" alt="Logo Vititos" />
     </a>
-  </header>
   </header>
 
   <nav>
