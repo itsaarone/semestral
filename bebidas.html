@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Menú - Cervezas | Vititos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Menú - Bebidas | Vititos</title>
   <style>
     :root {
       --bg-dark: #111;
@@ -21,8 +21,9 @@
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: url('https://png.pngtree.com/background/20250426/original/pngtree-elegant-bar-interior-with-red-lighting-and-a-beautiful-arrangement-of-picture-image_16097192.jpg') center/cover no-repeat fixed;
-      backdrop-filter: blur(3px);
+      background: url('https://png.pngtree.com/background/20250426/original/pngtree-elegant-bar-interior-with-red-lighting-and-a-beautiful-arrangement-of-picture-image_16097192.jpg') center/cover no-repeat;
+      background-attachment: fixed;
+      backdrop-filter: blur(2px);
       color: var(--text-light);
       min-height: 100vh;
       display: flex;
@@ -31,11 +32,11 @@
 
     header {
       text-align: center;
-      padding: 1rem;
+      padding: 1rem 1rem 0.5rem;
     }
 
     header img {
-      height: 120px;
+      height: 100px;
     }
 
     nav {
@@ -63,7 +64,7 @@
     h1 {
       text-align: center;
       color: var(--accent);
-      margin: 1.5rem auto;
+      margin: 1rem auto 1.5rem;
       text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
     }
 
@@ -71,8 +72,8 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
-      padding: 0 1rem;
-      margin-bottom: 2rem;
+      padding: 0 1rem 3rem; 
+      flex-grow: 1;
     }
 
     .menu-item {
@@ -122,26 +123,28 @@
       margin-top: auto;
     }
 
-    /* Mejoras responsive */
-    @media (max-width: 768px) {
-      nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.5rem;
+    @media (max-width: 600px) {
+      .menu-grid {
+        grid-template-columns: 1fr;
+        padding: 0 0 2rem;
       }
 
       header img {
-        height: 100px;
+        height: 80px;
       }
 
       h1 {
         font-size: 1.8rem;
       }
+
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
     }
   </style>
 </head>
 <body>
-
   <header>
     <a href="main.html">
       <img src="vititos.png" alt="Logo Vititos" />
@@ -154,9 +157,8 @@
     <a href="cocteles.html">Cócteles</a>
     <a href="shots.html">Shots</a>
     <a href="bebidas.html">Bebidas</a>
-    <a href="reservas.html">Reservas</a>
+    <a href="index.php">Reservas</a>
   </nav>
-
 
   <h1>Bebidas</h1>
 
@@ -293,7 +295,7 @@
       </div>
     </div>
   </div>
-  
+
   </div>
 
   <footer>

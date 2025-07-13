@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Menú - Cervezas | Vititos</title>
+  <title>Menú - Entradas | Vititos</title>
   <style>
     :root {
       --bg-dark: #111;
@@ -31,14 +31,15 @@
 
     header {
       text-align: center;
-      padding: 1rem;
+      padding: 1rem 1rem 0.5rem;
     }
 
     header img {
-      height: 120px;
+      height: 140px;
+      max-width: 100%;
     }
 
-    nav {
+     nav {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
@@ -63,7 +64,7 @@
     h1 {
       text-align: center;
       color: var(--accent);
-      margin: 1.5rem auto;
+      margin: 1rem auto 1.5rem;
       text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
     }
 
@@ -122,20 +123,23 @@
       margin-top: auto;
     }
 
-    /* Mejoras responsive */
-    @media (max-width: 768px) {
-      nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.5rem;
+    @media (max-width: 600px) {
+      .menu-grid {
+        grid-template-columns: 1fr;
+        padding: 0;
       }
 
       header img {
-        height: 100px;
+        height: 80px;
       }
 
       h1 {
         font-size: 1.8rem;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: center;
       }
     }
   </style>
@@ -154,7 +158,7 @@
     <a href="cocteles.html">Cócteles</a>
     <a href="shots.html">Shots</a>
     <a href="bebidas.html">Bebidas</a>
-    <a href="reservas.html">Reservas</a>
+    <a href="index.php">Reservas</a>
   </nav>
 
   <h1>Entradas</h1>
@@ -293,9 +297,8 @@
   </div>
 </div>
 
-  
   </div>
-  
+
   <footer>
     2025 Emilio Polastre. Ingeniería en Informática. Contacto: epolastre1@gmail.com. Todos los derechos reservados.
   </footer>

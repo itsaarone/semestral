@@ -1,6 +1,98 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Vititos – Bar Restaurante</title>
+  <style>
+    :root {
+      --bg-dark: #111;
+      --overlay: rgba(0,0,0,0.6);
+      --accent: #e69c0f;
+      --text-light: #fafafa;
+      --footer-bg: #000;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    header {
+      position: relative;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('') center/cover no-repeat;
+      filter: blur(3px) brightness(0.6);
+      z-index: 0;
+      transform: scale(1.05);
+    }
+
+    header h1 {
+      position: relative;
+      font-size: 3rem;
+      color: var(--accent);
+      z-index: 1;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+    }
+
+    .hero {
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .gallery img {
+      width: calc(50% - 1rem);
+      max-width: 300px;
+      border-radius: 8px;
+      transition: transform 0.3s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .location, .slogan {
+      text-align: center;
+      margin: 1rem;
+      padding: 1rem;
+    }
+<!DOCTYPE html>
+<html lang="es">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vititos | Bienvenido</title>
