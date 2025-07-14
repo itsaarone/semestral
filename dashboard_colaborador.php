@@ -2,90 +2,98 @@
 session_start();
 include("conexion.php");
 
-if (!isset($_SESSION['id']) || $_SESSION['rol'] !== 'usuario') {
+if (!isset($_SESSION['id']) || $_SESSION['rol'] !== 'colaborador') {
     header("Location: index.php");
     exit();
 }
 
-$usuario_id = $_SESSION['id'];
 $mensaje = "";
-$verificacion = "";
 
-// Verifica si la hora está permitida (de 10:00 a 21:30 cada 30 min)
-function esHoraValida($hora) {
-    $permitidas = [];
-    for ($h = 10; $h <= 21; $h++) {
-        $permitidas[] = sprintf('%02d:00', $h);
-        if ($h < 21) $permitidas[] = sprintf('%02d:30', $h);
-    }
-    return in_array($hora, $permitidas);
+// Obtener lista de usuarios para asignar reservas
+$usuarios = [];
+$result = $conexion->query("SELECT id, nombre FROM usuarios ORDER BY nombre");
+while ($user = $result->fetch_assoc()) {
+    $usuarios[] = $user;
 }
 
-// Verifica disponibilidad en la base de datos
-function hayDisponibilidad($conexion, $fecha, $hora) {
-    $stmt = $conexion->prepare("SELECT COUNT(*) AS total FROM reservas WHERE fecha = ? AND hora = ?");
-    $stmt->bind_param("ss", $fecha, $hora);
-    $stmt->execute();
-    $stmt->bind_result($totalReservas);
-    $stmt->fetch();
-    $stmt->close();
-    return ($totalReservas < 10);
-}
-
-// Verificar disponibilidad
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['verificar_disponibilidad'])) {
-    $fecha = $_POST['fecha'];
-    $hora = $_POST['hora'];
-    if (!esHoraValida($hora)) {
-        $verificacion = "⛔ La hora debe estar entre 10:00 y 21:30 en intervalos de 30 minutos.";
-    } else {
-        if (hayDisponibilidad($conexion, $fecha, $hora)) {
-            $verificacion = "✅ Hay disponibilidad para la fecha y hora seleccionadas.";
-        } else {
-            $verificacion = "⚠️ No hay disponibilidad para esa fecha y hora.";
-        }
-    }
-}
-
-// Nueva reserva
+// Procesar nueva reserva (por colaborador)
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nueva_reserva'])) {
+    $usuario_id = intval($_POST['usuario_id']);
     $personas = intval($_POST['personas']);
     $fecha = $_POST['fecha'];
     $hora = $_POST['hora'];
 
-    if (!esHoraValida($hora)) {
-        $mensaje = "⛔ Solo se permiten reservas entre 10:00 y 21:30 en intervalos de 30 minutos.";
+    if ($hora < "10:00" || $hora > "22:00") {
+        $mensaje = "⛔ Solo se permiten reservas entre las 10:00 y las 22:00.";
     } else {
-        if (!hayDisponibilidad($conexion, $fecha, $hora)) {
-            $mensaje = "⚠️ No hay mesas disponibles para esa fecha y hora.";
+        // Contar reservas existentes en esa fecha y hora
+        $stmt = $conexion->prepare("SELECT COUNT(*) AS total FROM reservas WHERE fecha = ? AND hora = ?");
+        $stmt->bind_param("ss", $fecha, $hora);
+        $stmt->execute();
+        $stmt->bind_result($totalReservas);
+        $stmt->fetch();
+        $stmt->close();
+
+        if ($totalReservas >= 10) {
+            $mensaje = "⚠️ Ya se han reservado las 10 mesas para esa hora.";
         } else {
+            // Insertar la nueva reserva
             $stmt = $conexion->prepare("INSERT INTO reservas (usuario_id, personas, fecha, hora) VALUES (?, ?, ?, ?)");
             $stmt->bind_param("iiss", $usuario_id, $personas, $fecha, $hora);
             $stmt->execute();
             $stmt->close();
-            $mensaje = "✅ ¡Reserva realizada con éxito!";
+            $mensaje = "✅ Reserva creada con éxito.";
         }
     }
 }
 
-// Obtener reservas
-$reservas = [];
-$sql = "SELECT * FROM reservas WHERE usuario_id = ?";
+// Filtrar reservas por fecha si se envía filtro
+$filtro_fecha = $_GET['fecha'] ?? '';
+
+// Obtener todas las reservas (con filtro si hay)
+$sql = "SELECT r.*, u.nombre AS nombre_usuario FROM reservas r JOIN usuarios u ON r.usuario_id = u.id";
+$params = [];
+$types = "";
+
+if ($filtro_fecha) {
+    $sql .= " WHERE r.fecha = ?";
+    $params[] = $filtro_fecha;
+    $types = "s";
+}
+$sql .= " ORDER BY r.fecha DESC, r.hora DESC";
+
 $stmt = $conexion->prepare($sql);
-$stmt->bind_param("i", $usuario_id);
+
+if ($filtro_fecha) {
+    $stmt->bind_param($types, ...$params);
+}
+
 $stmt->execute();
 $result = $stmt->get_result();
-while ($fila = $result->fetch_assoc()) {
-    $reservas[] = $fila;
+
+$reservas = [];
+while ($row = $result->fetch_assoc()) {
+    $reservas[] = $row;
 }
 $stmt->close();
+
+// Contador de reservas por fecha y hora para mostrar disponibilidad
+$disponibilidad = [];
+$stmt2 = $conexion->prepare("SELECT fecha, hora, COUNT(*) as total FROM reservas GROUP BY fecha, hora");
+$stmt2->execute();
+$res2 = $stmt2->get_result();
+while ($row = $res2->fetch_assoc()) {
+    $disponibilidad[$row['fecha']][$row['hora']] = $row['total'];
+}
+$stmt2->close();
+
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Dashboard Usuario | Vititos</title>
+  <title>Dashboard Colaborador | Vititos</title>
   <link rel="stylesheet" href="estilos.css" />
   <style>
     :root {
@@ -220,91 +228,86 @@ $stmt->close();
 </head>
 <body>
 
-  <h2>Bienvenido al Panel de Reservas</h2>
+  <h2>Panel de Gestión de Reservas - Colaboradores</h2>
 
-  <?php if (!empty($mensaje)): ?>
+  <?php if ($mensaje): ?>
     <div class="mensaje"><?= $mensaje ?></div>
   <?php endif; ?>
-  <?php if (!empty($verificacion)): ?>
-    <div class="mensaje" style="border-color: #0f0;"><?= $verificacion ?></div>
-  <?php endif; ?>
 
-  <h3 style="color: var(--accent);">Reservar una Mesa</h3>
-  <form method="POST" id="formReserva">
-    <input type="hidden" name="nueva_reserva" value="1" id="inputNuevaReserva">
-
+  <h3 style="color: var(--accent); margin-bottom: 0.5rem;">Crear Nueva Reserva</h3>
+  <form method="POST">
+    <input type="hidden" name="nueva_reserva" value="1">
+    
+    <label for="usuario_id">Usuario:</label>
+    <select id="usuario_id" name="usuario_id" required>
+      <option value="">Seleccione un usuario</option>
+      <?php foreach ($usuarios as $user): ?>
+        <option value="<?= $user['id'] ?>"><?= htmlspecialchars($user['nombre']) ?></option>
+      <?php endforeach; ?>
+    </select>
+    
     <label for="personas">Cantidad de Personas:</label>
-    <input type="number" id="personas" name="personas" required min="1" max="20" />
+    <input type="number" id="personas" name="personas" min="1" max="20" required>
 
     <label for="fecha">Fecha:</label>
-    <input type="date" id="fecha" name="fecha" required />
+    <input type="date" id="fecha" name="fecha" required>
 
-    <label for="hora">Hora:</label>
-    <select name="hora" id="hora" required>
-      <option value="">Seleccionar hora</option>
-      <?php
-        for ($h = 10; $h <= 21; $h++) {
-          $hora1 = sprintf('%02d:00', $h);
-          $hora2 = sprintf('%02d:30', $h);
-          echo "<option value='$hora1'>$hora1</option>";
-          if ($h < 21) echo "<option value='$hora2'>$hora2</option>";
-        }
-      ?>
-    </select>
+    <label for="hora">Hora (10:00 - 22:00):</label>
+    <input type="time" id="hora" name="hora" min="10:00" max="22:00" step="3600" required>
 
-    <button type="submit" onclick="return confirmarReserva()">Reservar</button>
-    <button type="button" onclick="verificarDisponibilidad()">Verificar Disponibilidad</button>
+    <button type="submit">Crear Reserva</button>
   </form>
 
-  <div>
-    <a href="entradas.html" class="btn-regresar">← Regresar al Menú</a>
-  </div>
+  <hr style="width: 100%; margin: 2rem 0; border-color: var(--accent);" />
 
-  <h3 style="color: var(--accent);">Mis Reservas</h3>
-  <?php if (count($reservas) == 0): ?>
-    <p>No tienes reservas registradas.</p>
-  <?php else: ?>
-    <table>
-      <thead>
-        <tr>
-          <th>Personas</th>
-          <th>Fecha</th>
-          <th>Hora</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($reservas as $r): ?>
+  <h3 style="color: var(--accent); margin-bottom: 0.5rem;">Reservas Existentes</h3>
+
+  <!-- Formulario filtro -->
+  <form method="GET" class="filtro-fecha">
+    <input type="date" name="fecha" value="<?= htmlspecialchars($filtro_fecha) ?>">
+    <button type="submit">Filtrar</button>
+  </form>
+
+  <!-- Botón Mostrar Todo separado y más abajo -->
+  <a href="dashboard_colaborador.php" class="btn-regresar">Mostrar Todo</a>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Usuario</th>
+        <th>Personas</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Disponibilidad</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php if (count($reservas) === 0): ?>
+        <tr><td colspan="6" style="color: #f0a;">No hay reservas<?= $filtro_fecha ? " para la fecha " . htmlspecialchars($filtro_fecha) : "" ?>.</td></tr>
+      <?php else: ?>
+        <?php foreach ($reservas as $reserva): ?>
+          <?php
+            $totalMesas = $disponibilidad[$reserva['fecha']][$reserva['hora']] ?? 0;
+            $disponible = 10 - $totalMesas;
+            $disponible_text = $disponible > 0 ? "Disponible ($disponible mesas libres)" : "Completo";
+            $color_disp = $disponible > 0 ? "#b0ffb0" : "#ff9090";
+          ?>
           <tr>
-            <td><?= htmlspecialchars($r['personas']) ?></td>
-            <td><?= htmlspecialchars($r['fecha']) ?></td>
-            <td><?= htmlspecialchars($r['hora']) ?></td>
+            <td><?= htmlspecialchars($reserva['nombre_usuario']) ?></td>
+            <td><?= $reserva['personas'] ?></td>
+            <td><?= htmlspecialchars($reserva['fecha']) ?></td>
+            <td><?= htmlspecialchars($reserva['hora']) ?></td>
+            <td style="color: <?= $color_disp ?>; font-weight: bold;"><?= $disponible_text ?></td>
             <td>
-              <a href="editar_reserva.php?id=<?= $r['id'] ?>">Editar</a> |
-              <a href="eliminar_reserva.php?id=<?= $r['id'] ?>" onclick="return confirm('¿Eliminar esta reserva?')">Eliminar</a>
+              <a href="editar_reserva.php?id=<?= $reserva['id'] ?>&fecha=<?= urlencode($filtro_fecha) ?>" style="color: #e6a50f;">Editar</a> |
+              <a href="eliminar_reserva.php?id=<?= $reserva['id'] ?>&fecha=<?= urlencode($filtro_fecha) ?>" style="color: #ff4444;" onclick="return confirm('¿Seguro que quieres eliminar esta reserva?');">Eliminar</a>
             </td>
           </tr>
         <?php endforeach; ?>
-      </tbody>
-    </table>
-  <?php endif; ?>
+      <?php endif; ?>
+    </tbody>
+  </table>
 
-<script>
-  function verificarDisponibilidad() {
-    const form = document.getElementById('formReserva');
-    let inputVerificar = document.createElement('input');
-    inputVerificar.type = 'hidden';
-    inputVerificar.name = 'verificar_disponibilidad';
-    inputVerificar.value = '1';
-    form.appendChild(inputVerificar);
-    document.getElementById('inputNuevaReserva').disabled = true;
-    form.submit();
-  }
-
-  function confirmarReserva() {
-    document.getElementById('inputNuevaReserva').disabled = false;
-    return true;
-  }
-</script>
 </body>
 </html>
